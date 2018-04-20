@@ -1,43 +1,45 @@
-(function makeGrid() {
+$("form").submit(function(event) {
 
-	// Select Grid Size
-	var canvas, cell, gridHeight, gridWidth, rows;
 
-	canvas = $('#pixel_canvas');
-	gridHeight = $('#input_height').val();
-	gridWidth = $('#input_width').val();
+  var canvas = $("#pixel_canvas");
 
-	canvas.children().remove()
+  var numOfRows = $('#input_height').val();
+  var numOfColumns = $('#input_width').val();
 
-	for (x = 0; x < gridHeight; x++) {
-	canvas.append('<tr></tr>');
-	}
+  console.log(numOfRows);
+  console.log(numOfColumns);
 
-	rows = $('tr');
+  var row = [];
+  for (var i = 0; i < numOfRows; i++) {
+    row.push("<tr></tr>");
+  }
 
-	for (y = 0; y < gridWidth; y++) {
-	rows.append('<td></td>');
-	}
+  console.log(row);
+  canvas.append(row);
 
-	cell = canvas.find('td');
 
-	// When td is clicked by the user, change color of td
-	cell.click(function() {
-		// Select color input
-		console.log("changeColor is running!");
-		var color;
-		color = $("#colorPicker").val();
-		$(this).attr('bgcolor', color);
-	});
+  var column = [];
+  for (var y = 0; y < numOfColumns; y++) {
+    column.push("<td></td>");
+  }
+  console.log(column);
 
-}
 
-// When size is submitted by the user, call makeGrid()
-var submitQuery;
 
-submitQuery = $('input[type="submit"]')
+  $('tr').each(function() {
+    $(this).append(column);
+  });
 
-submitQuery.click(function(event) {
+
+  $("td").click(
+    function() {
+      var cssColor = $('#colorPicker').val();
+      console.log("css color  " + cssColor);
+      $(this).css({
+        "background-color": cssColor
+      });
+    }
+  );
+
   event.preventDefault();
-  makeGrid();
-})();
+});
