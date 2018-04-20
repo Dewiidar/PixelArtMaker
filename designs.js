@@ -40,4 +40,4 @@ submitQuery = $('input[type="submit"]')
 submitQuery.click(function(event) {
   event.preventDefault();
   makeGrid();
-});
+})();
