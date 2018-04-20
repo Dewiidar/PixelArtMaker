@@ -1,4 +1,4 @@
-function makeGrid() {
+(function makeGrid() {
 
 	// Select Grid Size
 	var canvas, cell, gridHeight, gridWidth, rows;
